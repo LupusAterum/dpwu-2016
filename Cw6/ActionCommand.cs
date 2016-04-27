@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Cw6 {
+namespace ToDoTaskList {
     public class ActionCommand : ICommand {
         private Action<ToDoTask> action;
         public ActionCommand(Action<ToDoTask> action) {

@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="Cw6.App"
+    x:Class="ToDoTaskList.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Cw6"
+    xmlns:local="using:ToDoTaskList"
     RequestedTheme="Dark">
 
 </Application>

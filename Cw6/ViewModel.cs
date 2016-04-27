@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Cw6 {
+namespace ToDoTaskList {
     public class ViewModel : INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
 

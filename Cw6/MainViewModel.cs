@@ -10,7 +10,7 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace Cw6 {
+namespace ToDoTaskList {
     public class MainViewModel : ViewModel {
 
         private StorageFolder localDataFolder { get; set; } = ApplicationData.Current.LocalFolder;
@@ -36,7 +36,7 @@ namespace Cw6 {
         }
         private async Task<string> readUserId() {
             string userName = "Lupus";
-            StorageFolder folder = await localDataFolder.CreateFolderAsync("Cw6", Windows.Storage.CreationCollisionOption.OpenIfExists);
+            StorageFolder folder = await localDataFolder.CreateFolderAsync("ToDoTaskList", Windows.Storage.CreationCollisionOption.OpenIfExists);
 
             StorageFile file = await folder.CreateFileAsync("user.dat", Windows.Storage.CreationCollisionOption.OpenIfExists);
             if (file != null) {
