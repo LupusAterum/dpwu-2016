@@ -39,6 +39,6 @@
         <TextBlock Grid.Column="0" Grid.Row="1" x:Uid="Title" VerticalAlignment="Center" Text=""/>
         <TextBox Grid.Column="2" Grid.Row="1" x:Name="taskTitle" Text="{Binding CurrentObject.Title, Mode=TwoWay}"></TextBox>
         <TextBlock Grid.Column="0" Grid.Row="3" x:Uid="Description" Text=""/>
-        <TextBox Grid.Column="2" Grid.Row="3" x:Name="taskDesc" Text="{Binding CurrentObject.Value, Mode=TwoWay}" AcceptsReturn="True"></TextBox>
+        <TextBox Grid.Column="2" Grid.Row="3" x:Name="taskDesc" Text="{Binding CurrentObject.Value, Mode=TwoWay}" AcceptsReturn="True" MinHeight="128"></TextBox>
     </Grid>
 </Page>

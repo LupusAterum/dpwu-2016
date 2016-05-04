@@ -29,8 +29,6 @@
                 </Grid.RowDefinitions>
                 <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" Grid.Row="0" FontSize="29.333" FontWeight="Bold" VerticalAlignment="Center" Grid.ColumnSpan="2"></TextBlock>
                 <TextBlock Text="{Binding Value}" Grid.Row="1" Grid.ColumnSpan="2"></TextBlock>
-                <TextBlock Text="Created:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
-                <TextBlock Text="{Binding CreatedAt}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
             </Grid>
         </DataTemplate>
     </Page.Resources>

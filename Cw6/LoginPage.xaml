@@ -9,15 +9,17 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
 
             <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -25,7 +27,8 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" x:Name="Greeting" x:Uid="Greeting" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="2" x:Uid="LoginGreeting" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="4" x:Name="LoginField"/>
-        <Button Grid.Row="6" x:Name="LoginButtton" x:Uid="LoginButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="LoginButtton_Click" ></Button>
+        <TextBox Grid.Row="4" x:Name="LoginField" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" MinWidth="200" MinHeight="34"/>
+        <Button Grid.Row="6" x:Name="LoginButtton" x:Uid="LoginButton" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LoginButtton_Click" MinWidth="150" MinHeight="40" ></Button>
+        <Button Grid.Row="8" x:Name="AboutButton" x:Uid="AboutButton" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150" MinHeight="40" Click="AboutButton_Click"/>
     </Grid>
 </Page>

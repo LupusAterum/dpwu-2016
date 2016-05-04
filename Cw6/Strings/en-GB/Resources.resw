@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutAuthor" xml:space="preserve">
+    <value>Author: Karol Mazurek</value>
+  </data>
+  <data name="AboutButton.Content" xml:space="preserve">
+    <value>About app...</value>
+  </data>
+  <data name="AboutEmail" xml:space="preserve">
+    <value>E-mail: kmazurek93@gmail.com</value>
+  </data>
   <data name="Accept.Label" xml:space="preserve">
     <value>accept</value>
     <comment>app bat button apply</comment>
@@ -127,6 +136,9 @@
   </data>
   <data name="AddTaskTitle.Text" xml:space="preserve">
     <value>Add Task</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright 2016 Faculty of Mathematics and Computer Science</value>
   </data>
   <data name="DeleteConfirmationText" xml:space="preserve">
     <value>Are you sure that you want to delete this?</value>

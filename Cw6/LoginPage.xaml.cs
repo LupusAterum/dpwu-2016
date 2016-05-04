@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -35,6 +36,18 @@ namespace ToDoTaskList {
             else {
                 //show messageDialog: error
             }
+        }
+
+        private async void AboutButton_Click(object sender, RoutedEventArgs e) {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            var authorString = loader.GetString("AboutAuthor");
+            var autorEmailString = loader.GetString("AboutEmail");
+            var copyright = loader.GetString("Copyright");
+            MessageDialog about = new MessageDialog(authorString + "\n" + autorEmailString + "\n" + copyright);
+            about.Commands.Clear();
+            about.Commands.Add(new UICommand("OK"));
+            await about.ShowAsync();
+
         }
     }
 }
