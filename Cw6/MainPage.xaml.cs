@@ -25,7 +25,10 @@ namespace ToDoTaskList
         public MainPage() {
             this.InitializeComponent();
             DataContext = MainViewModel.I();
-            getViewModel().readRemoteData();
+            readDataAsync();
+        }
+        private async void readDataAsync() {
+            await getViewModel().readRemoteData();
         }
         private MainViewModel getViewModel() {
             return DataContext as MainViewModel;
@@ -45,8 +48,8 @@ namespace ToDoTaskList
             }
         }
 
-        private void AppBarButton_Click_1(object sender, RoutedEventArgs e) {
-            getViewModel().readRemoteData();
+        private async void AppBarButton_Click_1(object sender, RoutedEventArgs e) {
+            await getViewModel().readRemoteData();
         }
 
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e) {

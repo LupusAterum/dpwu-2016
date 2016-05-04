@@ -154,6 +154,9 @@
   <data name="EditTaskTitle.Text" xml:space="preserve">
     <value>Edytuj zadanie</value>
   </data>
+  <data name="EmptyLogin" xml:space="preserve">
+    <value>Brak loginu.</value>
+  </data>
   <data name="Greeting.Text" xml:space="preserve">
     <value>Witaj!</value>
     <comment>hello</comment>

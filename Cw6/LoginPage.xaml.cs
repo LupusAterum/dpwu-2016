@@ -28,13 +28,15 @@ namespace ToDoTaskList {
             DataContext = MainViewModel.I();
         }
 
-        private void LoginButtton_Click(object sender, RoutedEventArgs e) {
+        private async void LoginButtton_Click(object sender, RoutedEventArgs e) {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             if (LoginField.Text != "") {
                 (DataContext as MainViewModel).OwnerID = LoginField.Text;
                 Frame.Navigate(typeof(MainPage));
             }
             else {
-                //show messageDialog: error
+                MessageDialog error = new MessageDialog(loader.GetString("EmptyLogin"));
+                await error.ShowAsync();
             }
         }
 
@@ -48,6 +50,14 @@ namespace ToDoTaskList {
             about.Commands.Add(new UICommand("OK"));
             await about.ShowAsync();
 
+        }
+
+        private void LoginField_TextChanged(object sender, TextChangedEventArgs e) {
+
+        }
+
+        private void LoginField_KeyDown(object sender, KeyRoutedEventArgs e) {
+            if (e.Key == Windows.System.VirtualKey.Enter) LoginButtton_Click(this, e);
         }
     }
 }

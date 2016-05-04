@@ -47,9 +47,9 @@ namespace ToDoTaskList {
             }
         }
 
-        private void confirmEdition(object sender, RoutedEventArgs e) {
+        private async void confirmEdition(object sender, RoutedEventArgs e) {
 
-            getViewModel().updateTask(getViewModel().CurrentObject);
+            await getViewModel().updateTask(getViewModel().CurrentObject);
             Frame.GoBack();
 
 
