@@ -11,8 +11,8 @@
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton Icon="Add" HorizontalAlignment="Center" Label="add task" Click="AppBarButton_Click"/>
-            <AppBarButton Icon="Refresh" HorizontalAlignment="Center" Label="refresh" Click="AppBarButton_Click_1"/>
+            <AppBarButton Icon="Add" HorizontalAlignment="Center" x:Uid="AddTask" Label="" Click="AppBarButton_Click"/>
+            <AppBarButton Icon="Refresh" HorizontalAlignment="Center" x:Uid="Refresh" Label="" Click="AppBarButton_Click_1"/>
         </CommandBar>
     </Page.BottomAppBar>
     <Page.Resources>
@@ -31,7 +31,12 @@
         </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListBox x:Name="ListBox1" ItemsSource="{Binding ItemsCollection}" ItemTemplate="{ StaticResource ItemsDataTemplate}" SelectionChanged="ListBox1_SelectionChanged"> </ListBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" x:Name="ListTitle" x:Uid="TaskListTitle" SelectionChanged="TextBlock_SelectionChanged" FontSize="18.667" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <ListBox Grid.Row="1" x:Name="ListBox1" ItemsSource="{Binding ItemsCollection}" ItemTemplate="{ StaticResource ItemsDataTemplate}" SelectionChanged="ListBox1_SelectionChanged"> </ListBox>
         
     </Grid>
     

@@ -15,7 +15,7 @@
                     
                 </Grid>
             </CommandBar.Content>
-            <AppBarButton Icon="Accept" Label="accept" Click="AppBarButton_Click"/>
+            <AppBarButton Icon="Accept" x:Uid="Accept" Label="" Click="AppBarButton_Click"/>
 
         </CommandBar>
     </Page.BottomAppBar>
@@ -33,10 +33,10 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" FontWeight="Bold">Add Task</TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center">Title:</TextBlock>
+        <TextBlock Grid.ColumnSpan="2" Grid.Row="0" x:Uid="AddTaskTitle" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="29.333" FontWeight="Bold" Text=""/>
+        <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" x:Uid="Title" Text=""/>
         <TextBox Grid.Column="1" Grid.Row="2" x:Name="taskTitle"></TextBox>
-        <TextBlock Grid.Column="0" Grid.Row="4">Description:</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="4" x:Uid="Description" Text="" />
         <TextBox Grid.Column="1" Grid.Row="4" Height="200" x:Name="taskDesc" AcceptsReturn="True"></TextBox>
     </Grid>
 </Page>

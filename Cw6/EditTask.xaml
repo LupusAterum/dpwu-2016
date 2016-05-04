@@ -15,8 +15,8 @@
                     
                 </Grid>
             </CommandBar.Content>
-            <AppBarButton Icon="Accept" Label="accept" Click="confirmEdition"/>
-            <AppBarButton Icon="Delete" Label="del entry" Click="deleteEntry"/>
+            <AppBarButton Icon="Accept" x:Uid="Accept" Label="" Click="confirmEdition"/>
+            <AppBarButton Icon="Delete" x:Uid="RemoveTask" Label="del entry" Click="deleteEntry"/>
             
         </CommandBar>
     </Page.BottomAppBar>
@@ -35,9 +35,10 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="1" VerticalAlignment="Center">Title:</TextBlock>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" x:Uid="AddTaskTitle" Text=""/>
+        <TextBlock Grid.Column="0" Grid.Row="1" x:Uid="Title" VerticalAlignment="Center" Text=""/>
         <TextBox Grid.Column="2" Grid.Row="1" x:Name="taskTitle" Text="{Binding CurrentObject.Title, Mode=TwoWay}"></TextBox>
-        <TextBlock Grid.Column="0" Grid.Row="3">Description:</TextBlock>
-        <TextBox Grid.Column="2" Grid.Row="3" Height="200" x:Name="taskDesc" Text="{Binding CurrentObject.Value, Mode=TwoWay}" AcceptsReturn="True"></TextBox>
+        <TextBlock Grid.Column="0" Grid.Row="3" x:Uid="Description" Text=""/>
+        <TextBox Grid.Column="2" Grid.Row="3" x:Name="taskDesc" Text="{Binding CurrentObject.Value, Mode=TwoWay}" AcceptsReturn="True"></TextBox>
     </Grid>
 </Page>

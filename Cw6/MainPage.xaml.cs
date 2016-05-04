@@ -47,5 +47,9 @@ namespace ToDoTaskList
         private void AppBarButton_Click_1(object sender, RoutedEventArgs e) {
             getViewModel().readData();
         }
+
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e) {
+
+        }
     }
 }
