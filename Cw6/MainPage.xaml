@@ -17,16 +17,20 @@
     </Page.BottomAppBar>
     <Page.Resources>
         <DataTemplate x:Key="ItemsDataTemplate">
-            <Grid>
+            <Grid HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" Grid.Row="0" FontSize="29.333" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Value}" Grid.Row="1"></TextBlock>
+                <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" Grid.Row="0" FontSize="29.333" FontWeight="Bold" VerticalAlignment="Center" Grid.ColumnSpan="2"></TextBlock>
+                <TextBlock Text="{Binding Value}" Grid.Row="1" Grid.ColumnSpan="2"></TextBlock>
+                <TextBlock Text="Created:" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Text="{Binding CreatedAt}" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -36,7 +40,13 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" x:Name="ListTitle" x:Uid="TaskListTitle" SelectionChanged="TextBlock_SelectionChanged" FontSize="18.667" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            <ListBox Grid.Row="1" x:Name="ListBox1" ItemsSource="{Binding ItemsCollection}" ItemTemplate="{ StaticResource ItemsDataTemplate}" SelectionChanged="ListBox1_SelectionChanged"> </ListBox>
+            <ListBox Grid.Row="1" x:Name="ListBox1" ItemsSource="{Binding ItemsCollection}" ItemTemplate="{ StaticResource ItemsDataTemplate}" SelectionChanged="ListBox1_SelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
         
     </Grid>
     

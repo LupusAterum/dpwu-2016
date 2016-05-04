@@ -28,7 +28,13 @@ namespace ToDoTaskList {
         }
 
         private void LoginButtton_Click(object sender, RoutedEventArgs e) {
-
+            if (LoginField.Text != "") {
+                (DataContext as MainViewModel).OwnerID = LoginField.Text;
+                Frame.Navigate(typeof(MainPage));
+            }
+            else {
+                //show messageDialog: error
+            }
         }
     }
 }

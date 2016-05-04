@@ -26,6 +26,6 @@
         <TextBlock Grid.Row="0" x:Name="Greeting" x:Uid="Greeting" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="2" x:Uid="LoginGreeting" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox Grid.Row="4" x:Name="LoginField"/>
-        <Button Grid.Row="6" x:Name="LoginButtton" x:Uid="LoginButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ></Button>
+        <Button Grid.Row="6" x:Name="LoginButtton" x:Uid="LoginButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="LoginButtton_Click" ></Button>
     </Grid>
 </Page>

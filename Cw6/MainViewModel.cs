@@ -32,34 +32,28 @@ namespace ToDoTaskList {
             }
         }
         private MainViewModel() {
-            readData();
+            //readData();
         }
-        private async Task<string> readUserId() {
-            string userName = "Lupus";
-            StorageFolder folder = await localDataFolder.CreateFolderAsync("ToDoTaskList", Windows.Storage.CreationCollisionOption.OpenIfExists);
-
-            StorageFile file = await folder.CreateFileAsync("user.dat", Windows.Storage.CreationCollisionOption.OpenIfExists);
-            if (file != null) {
-                userName = await FileIO.ReadTextAsync(file);
-                if (userName == "") {
-
-                    return "Lupus";
-                }
-            } else {
-                return userName;
-            }
-            return "Lupus";
-        }
-        public async void readData() {
-            this.OwnerID = await readUserId();
+        public async void readRemoteData() {
             HttpClient client = new HttpClient();
             var result = await client.GetAsync("http://windowsphoneuam.azurewebsites.net/api/ToDoTasks?ownerId=" + OwnerID);
             var items = await result.Content.ReadAsStringAsync();
             ItemsCollection = JsonConvert.DeserializeObject<ObservableCollection<ToDoTask>>(items);
         }
-                
+        public async void readLocalData() {
+            StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat", CreationCollisionOption.OpenIfExists);
+            var items = await FileIO.ReadTextAsync(localDataFile);
+            ItemsCollection = JsonConvert.DeserializeObject<ObservableCollection<ToDoTask>>(items);
+            if(ItemsCollection == null) {
+                ItemsCollection = new ObservableCollection<ToDoTask>();
+            }
+        }
            
-
+        public async void saveLocalData() {
+            StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat", CreationCollisionOption.ReplaceExisting);
+            var items = JsonConvert.SerializeObject(ItemsCollection);
+            await FileIO.WriteTextAsync(localDataFile, items);
+        }
         public static MainViewModel I() {
             if(instance == null) {
                 instance = new MainViewModel();
@@ -76,6 +70,8 @@ namespace ToDoTaskList {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/ToDoTasks");
             request.Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(task), Encoding.UTF8, "application/json"); ;
             client.SendAsync(request);
+            saveLocalData();
+            readLocalData();
         }
         public void updateTask(ToDoTask task) {
             HttpClient client = new HttpClient();
@@ -86,12 +82,16 @@ namespace ToDoTaskList {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, "api/ToDoTasks/" + task.Id);
             request.Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(task), Encoding.UTF8, "application/json"); ;
             client.SendAsync(request);
+            saveLocalData();
+            readLocalData();
         }
         public void deleteTask(ToDoTask task) {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://windowsphoneuam.azurewebsites.net/");
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, "api/ToDoTasks/" + task.Id);
             client.SendAsync(request);
+            saveLocalData();
+            readLocalData();
         }
     }
 }

@@ -128,6 +128,9 @@
   <data name="AddTaskTitle.Text" xml:space="preserve">
     <value>Dodaj zadanie</value>
   </data>
+  <data name="DeleteConfirmationText" xml:space="preserve">
+    <value>Czy jesteś pewien, że chcesz usunąć to zadanie?</value>
+  </data>
   <data name="Description.Text" xml:space="preserve">
     <value>Opis</value>
     <comment>task desc</comment>
@@ -150,6 +153,9 @@
     <value>Podaj nazwę użytkownika:</value>
     <comment>login greeting</comment>
   </data>
+  <data name="NoBtn" xml:space="preserve">
+    <value>Nie</value>
+  </data>
   <data name="Refresh.Label" xml:space="preserve">
     <value>odśwież</value>
     <comment>app bar button refresh</comment>
@@ -167,5 +173,8 @@
   </data>
   <data name="Username.Text" xml:space="preserve">
     <value>Użytkownik:</value>
+  </data>
+  <data name="YesBtn" xml:space="preserve">
+    <value>Tak</value>
   </data>
 </root>

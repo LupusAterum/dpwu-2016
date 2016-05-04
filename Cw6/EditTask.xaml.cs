@@ -31,10 +31,11 @@ namespace ToDoTaskList {
             return DataContext as MainViewModel;
         }
         private async void deleteEntry(object sender, RoutedEventArgs e) {
-            MessageDialog confirm = new MessageDialog("Are you sure to delete this?");
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            MessageDialog confirm = new MessageDialog(loader.GetString("DeleteConfirmationText"));
             confirm.Commands.Clear();
-            confirm.Commands.Add(new UICommand { Label = "Yes", Id = 0 });
-            confirm.Commands.Add(new UICommand { Label = "No", Id = 1 });
+            confirm.Commands.Add(new UICommand { Label = loader.GetString("YesBtn"), Id = 0 });
+            confirm.Commands.Add(new UICommand { Label = loader.GetString("NoBtn"), Id = 1 });
             var res = await confirm.ShowAsync();
             if ((int) res.Id == 0) {
                 getViewModel().ItemsCollection.Remove(getViewModel().CurrentObject);
