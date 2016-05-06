@@ -1,0 +1,21 @@
+﻿<UserControl
+    x:Class="ToDoTaskList.LoginBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ToDoTaskList"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="150"
+    LostFocus="UserControl_LostFocus">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="LoginBox" Grid.Row="0" Text="{Binding ActualLogin, ElementName=userControl, Mode=TwoWay}" FontSize="16"/>
+        <Button x:Name="DoLogin" Grid.Row="2" x:Uid="LoginButton" HorizontalAlignment="Center" Width="130" Height="50" Click="DoLogin_Click"></Button>
+    </Grid>
+</UserControl>

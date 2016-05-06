@@ -33,7 +33,7 @@ namespace ToDoTaskList {
             }
         }
         private MainViewModel() {
-            //readData();
+           
         }
         public async Task readRemoteData() {
             HttpClient client = new HttpClient();
