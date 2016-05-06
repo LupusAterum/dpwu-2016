@@ -27,8 +27,8 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" x:Name="Greeting" x:Uid="Greeting" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Grid.Row="2" x:Uid="LoginGreeting" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="4" x:Name="LoginField" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" MinWidth="200" MinHeight="34" TextChanged="LoginField_TextChanged" KeyDown="LoginField_KeyDown"/>
-        <Button Grid.Row="6" x:Name="LoginButtton" x:Uid="LoginButton" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LoginButtton_Click" MinWidth="150" MinHeight="40" ></Button>
+        
         <Button Grid.Row="8" x:Name="AboutButton" x:Uid="AboutButton" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150" MinHeight="40" Click="AboutButton_Click"/>
+        <FlipView x:Name="flipView" HorizontalAlignment="Left" Margin="558,5,-298,0" Grid.Row="6" Grid.RowSpan="2" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Page>

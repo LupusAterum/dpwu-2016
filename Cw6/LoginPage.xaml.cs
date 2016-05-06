@@ -28,17 +28,7 @@ namespace ToDoTaskList {
             DataContext = MainViewModel.I();
         }
 
-        private async void LoginButtton_Click(object sender, RoutedEventArgs e) {
-            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-            if (LoginField.Text != "") {
-                (DataContext as MainViewModel).OwnerID = LoginField.Text;
-                Frame.Navigate(typeof(MainPage));
-            }
-            else {
-                MessageDialog error = new MessageDialog(loader.GetString("EmptyLogin"));
-                await error.ShowAsync();
-            }
-        }
+
 
         private async void AboutButton_Click(object sender, RoutedEventArgs e) {
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
