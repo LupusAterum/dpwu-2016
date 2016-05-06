@@ -10,34 +10,28 @@
         <CommandBar Background="#FF173E43">
             <CommandBar.Content>
                 <Grid>
-                    
-                
-                    
+
+
+
                 </Grid>
             </CommandBar.Content>
             <AppBarButton Icon="Accept" x:Uid="Accept" Label="" Click="AppBarButton_Click"/>
 
         </CommandBar>
     </Page.BottomAppBar>
-
-    <Grid Background="#FF3FB0AC">
+    <Grid Background="#FF3FB0AC" ScrollViewer.HorizontalScrollBarVisibility="Visible">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="65
-                           "></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="160"></RowDefinition>
+            <RowDefinition MaxHeight="30"></RowDefinition>
+            <RowDefinition MaxHeight="30"></RowDefinition>
+            <RowDefinition MaxHeight="60"></RowDefinition>
+            <RowDefinition Height="30 "></RowDefinition>
+            <RowDefinition MaxHeight="250"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" x:Uid="AddTaskTitle" Text=""  Style="{StaticResource TitleTextBlockStyle}" FontWeight="Bold" TextAlignment="Center"/>
-        <TextBlock Grid.Row="2" x:Uid="Title" VerticalAlignment="Center" Text="" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="Bold" TextAlignment="Center"/>
-        <TextBox Grid.Row="4" x:Name="taskTitle" Text="" Margin="10"></TextBox>
-        <TextBlock Grid.Row="6" x:Uid="Description" Text="" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="Bold" TextAlignment="Center"/>
-        <TextBox Grid.Row="8" x:Name="taskDesc" Text="" AcceptsReturn="True" MinHeight="128" Margin="10" TextWrapping="Wrap"></TextBox>
+        <TextBlock Grid.Row="1" x:Uid="Title" VerticalAlignment="Center" Text="" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="Bold" TextAlignment="Center"/>
+        <TextBox Grid.Row="2" x:Name="taskTitle" Text="" Margin="10" MaxHeight="50"></TextBox>
+        <TextBlock Grid.Row="3" x:Uid="Description" Text="" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="Bold" TextAlignment="Center"/>
+        <TextBox Grid.Row="4" x:Name="taskDesc" Text="" AcceptsReturn="True" MinHeight="80" MaxHeight ="200" Margin="10,0,10,10" TextWrapping="Wrap"></TextBox>
     </Grid>
 </Page>

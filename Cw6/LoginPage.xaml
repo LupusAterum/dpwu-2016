@@ -9,13 +9,9 @@
 
     <Grid Background="#FF173E43">
         <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="80"></RowDefinition>
+            <RowDefinition MaxHeight="60"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-
-            <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             
 
@@ -25,10 +21,10 @@
            
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" x:Name="Greeting" x:Uid="Greeting" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}"/>
-        <TextBlock Grid.Row="2" x:Uid="LoginGreeting" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}"/>
+        <TextBlock Grid.Row="1" x:Uid="LoginGreeting" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}"/>
+        <local:LoginBox x:Name="LoginUserControl" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch"/>
+        <Button Grid.Row="3" x:Name="AboutButton" x:Uid="AboutButton" HorizontalAlignment="Center" VerticalAlignment="Bottom" MinWidth="150" MinHeight="40" Click="AboutButton_Click" Background="#FF3FB0AC" Margin="24,20,20,20"/>
         
-        <Button Grid.Row="6" x:Name="AboutButton" x:Uid="AboutButton" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150" MinHeight="40" Click="AboutButton_Click" Background="#FF3FB0AC"/>
-        <local:LoginBox x:Name="LoginUserControl" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch"/>
 
     </Grid>
 </Page>
