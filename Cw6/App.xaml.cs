@@ -8,6 +8,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -89,6 +90,8 @@ namespace ToDoTaskList
                 RootFrame.Navigate(typeof(LoginPage), e.Arguments);
             }
             // Ensure the current window is active
+            
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(468, 320));
             Window.Current.Activate();
         }
 

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="2e2ebea5-479e-4833-84d1-770aab0ab8a3" Publisher="CN=Lupus" Version="0.5.1.0" />
+  <Identity Name="2e2ebea5-479e-4833-84d1-770aab0ab8a3" Publisher="CN=kmazu" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="2e2ebea5-479e-4833-84d1-770aab0ab8a3" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ToDo TaskList</DisplayName>
     <PublisherDisplayName>Lupus</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Assets\logo-50x50.png</Logo>
   </Properties>
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
@@ -15,10 +15,15 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="ToDoTaskList.App">
-      <uap:VisualElements DisplayName="ToDo TaskList" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Application for managing ToDo Tasks" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
+      <uap:VisualElements DisplayName="ToDo TaskList" Square150x150Logo="Assets\logo-300x300.png" Square44x44Logo="Assets\logo-88x88.png" Description="Application for managing ToDo Tasks" BackgroundColor="white">
+        <uap:DefaultTile Wide310x150Logo="Assets\logo-wide.png" Square310x310Logo="Assets\logo-610x610.png" Square71x71Logo="Assets\logo-142x142.png">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:SplashScreen Image="Assets\splash.png" BackgroundColor="white" />
         <uap:InitialRotationPreference>
           <uap:Rotation Preference="portrait" />
           <uap:Rotation Preference="landscape" />

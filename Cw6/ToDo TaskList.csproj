@@ -16,7 +16,8 @@
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>Cw6_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>ToDo TaskList_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>4506DF7ED514346F6DF95363A2CBE3DC5F447D97</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -93,6 +94,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="project.json" />
+    <None Include="ToDo TaskList_TemporaryKey.pfx" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\en-GB\Resources.resw" />
     <PRIResource Include="Strings\pl-PL\Resources.resw" />
@@ -128,14 +130,18 @@
     <None Include="Cw6_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\logo-142x142.png" />
+    <Content Include="Assets\logo-150x150.png" />
+    <Content Include="Assets\logo-200x200.png" />
+    <Content Include="Assets\logo-300x300.png" />
+    <Content Include="Assets\logo-310x150.png" />
+    <Content Include="Assets\logo-500x500.png" />
+    <Content Include="Assets\logo-50x50.png" />
+    <Content Include="Assets\logo-610x610.png" />
+    <Content Include="Assets\logo-88x88.png" />
+    <Content Include="Assets\logo-wide.png" />
+    <Content Include="Assets\splash.png" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
