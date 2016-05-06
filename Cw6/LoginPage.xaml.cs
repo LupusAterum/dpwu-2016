@@ -41,13 +41,19 @@ namespace ToDoTaskList {
             await about.ShowAsync();
 
         }
-
+        protected override void OnNavigatedTo(NavigationEventArgs e) {
+            LoginUserControl.clearLogin();
+        }
         private void LoginField_TextChanged(object sender, TextChangedEventArgs e) {
 
         }
 
         private void LoginField_KeyDown(object sender, KeyRoutedEventArgs e) {
-            if (e.Key == Windows.System.VirtualKey.Enter) LoginButtton_Click(this, e);
+           // if (e.Key == Windows.System.VirtualKey.Enter) //LoginButtton_Click(this, e);
+        }
+
+        private void LoginButtton_Click(object sender, RoutedEventArgs e) {
+
         }
     }
 }

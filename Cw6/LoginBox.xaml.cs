@@ -20,41 +20,46 @@ namespace ToDoTaskList {
     public sealed partial class LoginBox : UserControl {
         public LoginBox() {
             this.InitializeComponent();
-            ActualLogin = "";
+            
             DataContext = MainViewModel.I();
         }
 
-        
-        public string ActualLogin {
-            get { return (string)GetValue(ActualLoginProperty); }
-            set { SetValue(ActualLoginProperty, value); }
+       public void clearLogin() {
+            LoginTextBox.Text = "";
+            (DataContext as MainViewModel).OwnerID = "";
         }
-
-        // Using a DependencyProperty as the backing store for ActualLogin.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ActualLoginProperty =
-            DependencyProperty.Register("ActualLogin", typeof(string), typeof(LoginBox), null);
-
         private void UserControl_LostFocus(object sender, RoutedEventArgs e) {
-            if(ActualLogin != "") {
+            if((DataContext as MainViewModel).OwnerID == "") {
                 SolidColorBrush invalidColor = new SolidColorBrush();
-                invalidColor.Color = Windows.UI.Color.FromArgb(0, 255, 0, 0);
-                LoginBox.BorderBrush = invalidColor;
+                invalidColor.Color = Windows.UI.Color.FromArgb(255, 255, 0, 0);
+                LoginTextBox.BorderBrush = invalidColor;
             } else {
                 SolidColorBrush validColor = new SolidColorBrush();
-                validColor.Color = Windows.UI.Color.FromArgb(0, 0, 255, 0);
-                LoginBox.BorderBrush = validColor;
+                validColor.Color = Windows.UI.Color.FromArgb(255, 0, 255, 0);
+                LoginTextBox.BorderBrush = validColor;
             }
         }
 
         private async void DoLogin_Click(object sender, RoutedEventArgs e) {
             var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-            if (ActualLogin != "") {
-                (DataContext as MainViewModel).OwnerID = ActualLogin;
+            if ((DataContext as MainViewModel).OwnerID != "") {
                 App.RootFrame.Navigate(typeof(MainPage));
             }
             else {
                 MessageDialog error = new MessageDialog(loader.GetString("EmptyLogin"));
                 await error.ShowAsync();
+            }
+        }
+
+        private void LoginTextBox_LostFocus(object sender, RoutedEventArgs e) {
+            if ((DataContext as MainViewModel).OwnerID == "") {
+                SolidColorBrush invalidColor = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 0, 0));
+                LoginTextBox.BorderBrush = invalidColor;
+            }
+            else {
+                SolidColorBrush validColor = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 255, 0));
+                
+                LoginTextBox.BorderBrush = validColor;
             }
         }
     }
