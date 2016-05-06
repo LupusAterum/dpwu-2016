@@ -18,6 +18,11 @@
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>ToDo TaskList_TemporaryKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>4506DF7ED514346F6DF95363A2CBE3DC5F447D97</PackageCertificateThumbprint>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>D:\pkg</AppxPackageDir>
+    <AppxBundle>Auto</AppxBundle>
+    <AppxBundlePlatforms>x64|arm</AppxBundlePlatforms>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -130,17 +135,25 @@
     <None Include="Cw6_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\logo-142x142.png" />
+    <Content Include="Assets\logo-142x142.scale-100.png" />
+    <Content Include="Assets\logo-142x142.scale-200.png" />
     <Content Include="Assets\logo-150x150.png" />
     <Content Include="Assets\logo-200x200.png" />
-    <Content Include="Assets\logo-300x300.png" />
+    <Content Include="Assets\logo-300x300.scale-100.png" />
+    <Content Include="Assets\logo-300x300.scale-200.png" />
     <Content Include="Assets\logo-310x150.png" />
+    <Content Include="Assets\logo-310x310.png" />
+    <Content Include="Assets\logo-44x44.png" />
     <Content Include="Assets\logo-500x500.png" />
     <Content Include="Assets\logo-50x50.png" />
-    <Content Include="Assets\logo-610x610.png" />
-    <Content Include="Assets\logo-88x88.png" />
-    <Content Include="Assets\logo-wide.png" />
-    <Content Include="Assets\splash.png" />
+    <Content Include="Assets\logo-610x610.scale-100.png" />
+    <Content Include="Assets\logo-610x610.scale-200.png" />
+    <Content Include="Assets\logo-88x88.scale-100.png" />
+    <Content Include="Assets\logo-88x88.scale-200.png" />
+    <Content Include="Assets\logo-wide.scale-100.png" />
+    <Content Include="Assets\logo-wide.scale-200.png" />
+    <Content Include="Assets\splash.scale-100.png" />
+    <Content Include="Assets\splash.scale-200.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>

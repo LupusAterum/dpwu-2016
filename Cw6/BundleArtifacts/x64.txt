@@ -1,0 +1,1 @@
+MainPackage=D:\git\dpwu-2016\Cw6\bin\x64\Debug\ToDo TaskList_1.0.2.0_x64_Debug.appx
