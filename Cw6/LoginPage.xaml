@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#FF173E43">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
 
@@ -24,10 +24,10 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
            
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" x:Name="Greeting" x:Uid="Greeting" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="2" x:Uid="LoginGreeting" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Grid.Row="0" x:Name="Greeting" x:Uid="Greeting" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}"/>
+        <TextBlock Grid.Row="2" x:Uid="LoginGreeting" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}"/>
         
-        <Button Grid.Row="6" x:Name="AboutButton" x:Uid="AboutButton" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150" MinHeight="40" Click="AboutButton_Click"/>
+        <Button Grid.Row="6" x:Name="AboutButton" x:Uid="AboutButton" HorizontalAlignment="Center" VerticalAlignment="Center" MinWidth="150" MinHeight="40" Click="AboutButton_Click" Background="#FF3FB0AC"/>
         <local:LoginBox x:Name="LoginUserControl" HorizontalAlignment="Stretch" Grid.Row="4" VerticalAlignment="Stretch"/>
 
     </Grid>

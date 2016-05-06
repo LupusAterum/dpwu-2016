@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Background="#FF173E43">
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
@@ -27,18 +27,18 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" Grid.Row="0" FontSize="29.333" FontWeight="Bold" VerticalAlignment="Center" Grid.ColumnSpan="2"></TextBlock>
-                <TextBlock Text="{Binding Value}" Grid.Row="1" Grid.ColumnSpan="2"></TextBlock>
+                <TextBlock Text="{Binding Title}" HorizontalAlignment="Center" Grid.Row="0" FontSize="29.333" FontWeight="Bold" VerticalAlignment="Center" Grid.ColumnSpan="2" TextWrapping="WrapWholeWords"></TextBlock>
+                <TextBlock Text="{Binding Value}" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="WrapWholeWords"></TextBlock>
             </Grid>
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#FF173E43">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" x:Name="ListTitle" x:Uid="TaskListTitle" SelectionChanged="TextBlock_SelectionChanged" FontSize="18.667" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            <ListBox Grid.Row="1" x:Name="ListBox1" ItemsSource="{Binding ItemsCollection}" ItemTemplate="{ StaticResource ItemsDataTemplate}" SelectionChanged="ListBox1_SelectionChanged">
+        <TextBlock Grid.Row="0" x:Name="ListTitle" x:Uid="TaskListTitle" SelectionChanged="TextBlock_SelectionChanged" FontSize="18.667" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+            <ListBox Grid.Row="1" x:Name="ListBox1" ItemsSource="{Binding ItemsCollection}" ItemTemplate="{ StaticResource ItemsDataTemplate}" SelectionChanged="ListBox1_SelectionChanged" Background="#FF3FB0AC">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>

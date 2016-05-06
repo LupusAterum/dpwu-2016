@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Background="#FF173E43">
             <CommandBar.Content>
                 <Grid>
                     
@@ -21,23 +21,24 @@
         </CommandBar>
     </Page.BottomAppBar>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"></ColumnDefinition>
-            <ColumnDefinition Width="20"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+    <Grid Background="#FF3FB0AC">
+
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="65
+                           "></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="160"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" x:Uid="AddTaskTitle" Text=""/>
-        <TextBlock Grid.Column="0" Grid.Row="1" x:Uid="Title" VerticalAlignment="Center" Text=""/>
-        <TextBox Grid.Column="2" Grid.Row="1" x:Name="taskTitle" Text="{Binding CurrentObject.Title, Mode=TwoWay}"></TextBox>
-        <TextBlock Grid.Column="0" Grid.Row="3" x:Uid="Description" Text=""/>
-        <TextBox Grid.Column="2" Grid.Row="3" x:Name="taskDesc" Text="{Binding CurrentObject.Value, Mode=TwoWay}" AcceptsReturn="True" MinHeight="128"></TextBox>
+        <TextBlock Grid.Row="0" x:Uid="EditTaskTitle" Text="" Style="{StaticResource TitleTextBlockStyle}" TextAlignment="Center" FontWeight="Bold"/>
+        <TextBlock Grid.Row="2" x:Uid="Title" VerticalAlignment="Center" Text="" Style="{StaticResource SubtitleTextBlockStyle}" TextAlignment="Center" FontWeight="Bold"/>
+        <TextBox Grid.Row="4" x:Name="taskTitle" Text="{Binding CurrentObject.Title, Mode=TwoWay}" Margin="10"></TextBox>
+        <TextBlock Grid.Row="6" x:Uid="Description" Text="" Style="{StaticResource SubtitleTextBlockStyle}" TextAlignment="Center" FontWeight="Bold"/>
+        <TextBox Grid.Row="8" x:Name="taskDesc" Text="{Binding CurrentObject.Value, Mode=TwoWay}" AcceptsReturn="True" MinHeight="128" Margin="10" TextWrapping="Wrap"></TextBox>
     </Grid>
 </Page>

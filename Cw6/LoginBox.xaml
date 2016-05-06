@@ -15,7 +15,7 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="LoginTextBox" Grid.Row="0" MinHeight="50" MinWidth="200" Text="{Binding OwnerID, Mode=TwoWay}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Button x:Name="DoLogin" Grid.Row="2" x:Uid="LoginButton" HorizontalAlignment="Center" MinWidth="130" MinHeight="50" Click="DoLogin_Click"></Button>
+        <TextBox x:Name="LoginTextBox" Grid.Row="0" MinHeight="40" MinWidth="200" Text="{Binding OwnerID, Mode=TwoWay}" FontSize="18.667" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FFDDDFD4" Foreground="White" FontWeight="Bold" TextAlignment="Center"/>
+        <Button x:Name="DoLogin" Grid.Row="2" x:Uid="LoginButton" HorizontalAlignment="Center" MinWidth="130" MinHeight="50" Click="DoLogin_Click" Background="#FF3FB0AC"></Button>
     </Grid>
 </UserControl>
