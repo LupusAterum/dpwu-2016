@@ -28,11 +28,11 @@ namespace ToDoTaskList {
             return DataContext as MainViewModel;
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e) {
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e) {
             string title = taskTitle.Text;
             string desc = taskDesc.Text;
             ToDoTask task = new ToDoTask(title, desc);
-            getViewModel().addTask(task);
+            await getViewModel().addTaskLocal(task);
             Frame.GoBack();
         }
     }

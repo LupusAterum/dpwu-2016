@@ -38,8 +38,7 @@ namespace ToDoTaskList {
             confirm.Commands.Add(new UICommand { Label = loader.GetString("NoBtn"), Id = 1 });
             var res = await confirm.ShowAsync();
             if ((int) res.Id == 0) {
-                getViewModel().ItemsCollection.Remove(getViewModel().CurrentObject);
-                getViewModel().deleteTask(getViewModel().CurrentObject);
+                getViewModel().deleteTaskLocal(getViewModel().CurrentObject);
                 getViewModel().CurrentObject = null;
                 Frame.GoBack();
             } else {
@@ -49,7 +48,7 @@ namespace ToDoTaskList {
 
         private async void confirmEdition(object sender, RoutedEventArgs e) {
 
-            await getViewModel().updateTask(getViewModel().CurrentObject);
+            await getViewModel().updateTaskLocal(getViewModel().CurrentObject);
             Frame.GoBack();
 
 

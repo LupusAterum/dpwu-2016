@@ -12,7 +12,7 @@
                 <Grid/>
             </CommandBar.Content>
             <AppBarButton Icon="Add" HorizontalAlignment="Center" x:Uid="AddTask" Label="" Click="AppBarButton_Click"/>
-            <AppBarButton Icon="Refresh" HorizontalAlignment="Center" x:Uid="Refresh" Label="" Click="AppBarButton_Click_1"/>
+            <AppBarButton Icon="Sync" HorizontalAlignment="Center" x:Uid="Synchronize" Label="" Click="AppBarButton_Click_1"/>
         </CommandBar>
     </Page.BottomAppBar>
     <Page.Resources>
@@ -38,7 +38,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" x:Name="ListTitle" x:Uid="TaskListTitle" SelectionChanged="TextBlock_SelectionChanged" FontSize="18.667" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
-            <ListBox Grid.Row="1" x:Name="ListBox1" ItemsSource="{Binding ItemsCollection}" ItemTemplate="{ StaticResource ItemsDataTemplate}" SelectionChanged="ListBox1_SelectionChanged" Background="#FF3FB0AC">
+            <ListBox Grid.Row="1" x:Name="ListBox1" ItemsSource="{Binding LocalCollection}" ItemTemplate="{ StaticResource ItemsDataTemplate}" SelectionChanged="ListBox1_SelectionChanged" Background="#FF3FB0AC">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>

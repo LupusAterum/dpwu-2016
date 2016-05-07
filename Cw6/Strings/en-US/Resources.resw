@@ -171,13 +171,13 @@
   <data name="NoBtn" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="Refresh.Label" xml:space="preserve">
-    <value>refresh</value>
-    <comment>app bar button refresh</comment>
-  </data>
   <data name="RemoveTask.Label" xml:space="preserve">
     <value>delete</value>
     <comment>app bar button delete</comment>
+  </data>
+  <data name="Synchronize.Label" xml:space="preserve">
+    <value>synchronize</value>
+    <comment>app bar button refresh</comment>
   </data>
   <data name="TaskListTitle.Text" xml:space="preserve">
     <value>Task List</value>

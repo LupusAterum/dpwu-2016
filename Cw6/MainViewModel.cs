@@ -12,7 +12,11 @@ using System.Net.Http.Headers;
 
 namespace ToDoTaskList {
     public class MainViewModel : ViewModel {
-
+        private const string REST_BASE_URL = "http://windowsphoneuam.azurewebsites.net/";
+        private const string REST_PATH = "api/ToDoTasks/";
+        private const int ONLY_IN_LOCAL = 1;
+        private const int ONLY_IN_REMOTE = -1;
+        private const int IN_BOTH = 0;
         private StorageFolder localDataFolder { get; set; } = ApplicationData.Current.LocalFolder;
         private string ownerID { get; set; }
         public string OwnerID { get { return ownerID; } set { ownerID = value; } }
@@ -22,38 +26,41 @@ namespace ToDoTaskList {
             get { return currentObject; }
             set { currentObject = value; OnPropertyChanged("CurrentObject"); }
         }
-        private ObservableCollection<ToDoTask> itemsCollection;
-        public ObservableCollection<ToDoTask> ItemsCollection {
+        private ObservableCollection<ToDoTask> localCollection;
+        public ObservableCollection<ToDoTask> LocalCollection {
             get {
-                return itemsCollection;
+                return localCollection;
             }
             set {
-                itemsCollection = value;
-                OnPropertyChanged("ItemsCollection");
+                localCollection = value;
+                OnPropertyChanged("LocalCollection");
             }
         }
+        private ObservableCollection<ToDoTask> remoteCollection { get; set; }
         private MainViewModel() {
             OwnerID = "";
         }
         public async Task readRemoteData() {
             HttpClient client = new HttpClient();
-            var result = await client.GetAsync("http://windowsphoneuam.azurewebsites.net/api/ToDoTasks?ownerId=" + OwnerID);
+            var result = await client.GetAsync(REST_BASE_URL + REST_PATH + "?ownerId=" + OwnerID);
             var items = await result.Content.ReadAsStringAsync();
-            ItemsCollection = JsonConvert.DeserializeObject<ObservableCollection<ToDoTask>>(items);
+            remoteCollection = JsonConvert.DeserializeObject<ObservableCollection<ToDoTask>>(items);
         }
         public async Task readLocalData() {
-            StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat", CreationCollisionOption.OpenIfExists);
+            StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat", 
+                CreationCollisionOption.OpenIfExists);
             var items = await FileIO.ReadTextAsync(localDataFile);
-            ItemsCollection = JsonConvert.DeserializeObject<ObservableCollection<ToDoTask>>(items);
-            if (ItemsCollection == null) {
-                ItemsCollection = new ObservableCollection<ToDoTask>();
+            ObservableCollection<ToDoTask> collectionFromFile = JsonConvert.DeserializeObject<ObservableCollection<ToDoTask>>(items);
+            if (collectionFromFile == null) {
+                LocalCollection = new ObservableCollection<ToDoTask>();
             }
-
+            LocalCollection = collectionFromFile;
         }
 
         public async Task saveLocalData() {
-            StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat", CreationCollisionOption.ReplaceExisting);
-            var items = JsonConvert.SerializeObject(ItemsCollection);
+            StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat", 
+                CreationCollisionOption.ReplaceExisting);
+            var items = JsonConvert.SerializeObject(LocalCollection);
             await FileIO.WriteTextAsync(localDataFile, items);
         }
         public static MainViewModel I() {
@@ -62,40 +69,97 @@ namespace ToDoTaskList {
             }
             return instance;
         }
-        public async void addTask(ToDoTask task) {
-            ItemsCollection.Add(task);
-            OnPropertyChanged("ItemsCollection");
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://windowsphoneuam.azurewebsites.net/");
-            client.DefaultRequestHeaders
-                  .Accept
-                  .Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "api/ToDoTasks");
-            request.Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(task), Encoding.UTF8, "application/json"); ;
-            await client.SendAsync(request);
+        public async Task addTaskLocal(ToDoTask task) {
+            LocalCollection.Add(task);
+            task.Id = DateTime.Now.ToBinary();
+            OnPropertyChanged("LocalCollection");
             await saveLocalData();
         }
-        public async Task updateTask(ToDoTask task) {
-            var dateString = DateTime.Parse(task.CreatedAt);
+        public async Task updateTaskLocal(ToDoTask task) {
+            ToDoTask toUpdate = LocalCollection.Where(X => X.Id == task.Id).FirstOrDefault();
+            toUpdate.Title = task.Title;
+            toUpdate.Value = task.Value;
+            OnPropertyChanged("LocalCollection");
+            await saveLocalData();
+        }
+        public async void deleteTaskLocal(ToDoTask task) {
+            removeLocalTaskById(task.Id);
+            await saveLocalData();
+        }
+
+        private bool removeLocalTaskById(long id) {
+            ToDoTask toFind = LocalCollection.Where(X => X.Id == id).FirstOrDefault();
+            if (toFind != null) {
+                LocalCollection.Remove(toFind);
+                return true;
+            }
+            else return false;
+        }
+
+        private async Task deleteRemoteTask(ToDoTask task) {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(REST_BASE_URL);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, REST_PATH + task.Id);
+            await client.SendAsync(request);
+        }
+        private async Task updateRemoteTask(ToDoTask task) {
+            var dateString = DateTime.Parse(DateTime.Now.ToString());
             task.CreatedAt = dateString.ToString("dd'-'MM'-'yyyy HH:mm:ss");
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://windowsphoneuam.azurewebsites.net/");
-            client.DefaultRequestHeaders
-                  .Accept
-                  .Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, "api/ToDoTasks/" + task.Id);
+            client.BaseAddress = new Uri(REST_BASE_URL);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Put, REST_PATH + task.Id);
             var serialized = JsonConvert.SerializeObject(task);
-            request.Content = new StringContent(serialized, Encoding.UTF8, "application/json"); ;
+            request.Content = new StringContent(serialized, Encoding.UTF8, "application/json");
             await client.SendAsync(request);
+        }
+        private async Task addRemoteTask(ToDoTask task) {
+                task.Id = 0;
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(REST_BASE_URL);
+                client.DefaultRequestHeaders
+                      .Accept
+                      .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, REST_PATH);
+                request.Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(task), Encoding.UTF8, "application/json"); ;
+                await client.SendAsync(request);
+        }
+        public async Task synchronizeWithRest() {
             await readRemoteData();
+            //remove tasks that are not in local, update tasks in both
+            foreach (ToDoTask current in remoteCollection) {
+                int taskIs = isTaskInLocalOrRemoteOrBoth(current.Id);
+                if(taskIs == ONLY_IN_REMOTE) {
+                    await deleteRemoteTask(current);
+                } else if (taskIs == IN_BOTH) {
+                    await updateRemoteTask(current);
+                } 
+            }
+            //add tasks only in local
+            foreach(ToDoTask current in LocalCollection) {
+                int taskIs = isTaskInLocalOrRemoteOrBoth(current.Id);
+                if (taskIs == ONLY_IN_LOCAL) {
+                    await addRemoteTask(current);
+                }
+            }
+            //2 re-read collection from rest
+            await readRemoteData();
+            //3 now save remote to local (will update IDs et cetera)
+            LocalCollection = remoteCollection;
             await saveLocalData();
         }
-        public async void deleteTask(ToDoTask task) {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://windowsphoneuam.azurewebsites.net/");
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, "api/ToDoTasks/" + task.Id);
-            await client.SendAsync(request);
-            await saveLocalData();
+
+        private int isTaskInLocalOrRemoteOrBoth(long taskId) {
+            ToDoTask local = LocalCollection.Where(X => X.Id == taskId).FirstOrDefault();
+            ToDoTask remote = remoteCollection.Where(X => X.Id == taskId).FirstOrDefault();
+            if(local != null && remote != null) {
+                return IN_BOTH;
+            } else if(local == null) {
+                return ONLY_IN_REMOTE;
+            } else if(remote == null) {
+                return ONLY_IN_LOCAL;
+            }
+            return -999; //this won't happen
         }
+        
     }
 }
