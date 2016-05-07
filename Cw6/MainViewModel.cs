@@ -55,20 +55,33 @@ namespace ToDoTaskList {
         public async Task readLocalData() {
             StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat",
                 CreationCollisionOption.OpenIfExists);
-            var items = await FileIO.ReadTextAsync(localDataFile);
+            //var items = await FileIO.ReadTextAsync(localDataFile);
+            string items;
+            using (var stream = await localDataFile.OpenStreamForReadAsync()) {
+                using(var reader = new StreamReader(stream)) {
+                    items = await reader.ReadToEndAsync();
+                }
+            }
             ObservableCollection<ToDoTask> collectionFromFile = JsonConvert.DeserializeObject<ObservableCollection<ToDoTask>>(items);
             if (collectionFromFile == null) {
                 LocalCollection = new ObservableCollection<ToDoTask>();
             }
             else
                 LocalCollection = collectionFromFile;
+            
         }
 
         public async Task saveLocalData() {
             StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat",
                 CreationCollisionOption.ReplaceExisting);
             var items = JsonConvert.SerializeObject(LocalCollection);
-            await FileIO.WriteTextAsync(localDataFile, items);
+            using (var stream = await localDataFile.OpenStreamForWriteAsync()) {
+                using (var writer = new StreamWriter(stream)) {
+                   await writer.WriteAsync(items);
+                }
+            }
+            
+            //await FileIO.WriteTextAsync(localDataFile, items);
         }
         public static MainViewModel I() {
             if (instance == null) {
@@ -89,7 +102,7 @@ namespace ToDoTaskList {
             OnPropertyChanged("LocalCollection");
             await saveLocalData();
         }
-        public async void deleteTaskLocal(ToDoTask task) {
+        public async Task deleteTaskLocal(ToDoTask task) {
             removeLocalTaskById(task.Id);
             await saveLocalData();
         }

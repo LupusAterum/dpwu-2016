@@ -166,6 +166,12 @@
   <data name="EmptyLogin" xml:space="preserve">
     <value>No login provided.</value>
   </data>
+  <data name="ExitBtn.Content" xml:space="preserve">
+    <value>Exit app</value>
+  </data>
+  <data name="ExitConfirmation" xml:space="preserve">
+    <value>Are you sure you want to exit?</value>
+  </data>
   <data name="Greeting.Text" xml:space="preserve">
     <value>Hello!</value>
     <comment>hello</comment>
