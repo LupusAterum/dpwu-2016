@@ -137,6 +137,15 @@
   <data name="AddTaskTitle.Text" xml:space="preserve">
     <value>Add Task</value>
   </data>
+  <data name="ButtonDeviceToServer.Content" xml:space="preserve">
+    <value>device-to-server</value>
+  </data>
+  <data name="ButtonGetServerOnly.Content" xml:space="preserve">
+    <value>add-server-content</value>
+  </data>
+  <data name="ButtonServerToDevice.Content" xml:space="preserve">
+    <value>server-to-device</value>
+  </data>
   <data name="Copyright" xml:space="preserve">
     <value>Copyright 2016 Faculty of Mathematics and Computer Science</value>
   </data>
@@ -181,6 +190,17 @@
   <data name="Synchronize.Label" xml:space="preserve">
     <value>synchronize</value>
     <comment>app bar button refresh</comment>
+  </data>
+  <data name="SynchronizeModeMessage.Text" xml:space="preserve">
+    <value>server-to-device:
+replace device content with server content
+add-server-content:
+add server-only content
+device-to-server:
+replace server content with device content</value>
+  </data>
+  <data name="SynchronizeModeTitle.Text" xml:space="preserve">
+    <value>How do you want to synchronize?</value>
   </data>
   <data name="TaskListTitle.Text" xml:space="preserve">
     <value>Task List</value>

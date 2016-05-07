@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="ToDoTaskList.SyncModePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ToDoTaskList"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#FF3FB0AC">
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="100" Height="4*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition MaxHeight="70" Height="7*"></RowDefinition>
+            <RowDefinition MaxHeight="70" Height="70"></RowDefinition>
+            <RowDefinition MaxHeight="70" Height="7*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" x:Uid="SynchronizeModeTitle" HorizontalAlignment="Center" FontWeight="Bold" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="WrapWholeWords" TextAlignment="Center"/>
+        <TextBlock Grid.Row="1" x:Uid="SynchronizeModeMessage" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="WrapWholeWords" TextAlignment="Center" Margin="10"/>
+        <Button Grid.Row="2" x:Name="syncS2D" x:Uid="ButtonServerToDevice" MinWidth="200" MinHeight="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="syncS2D_Click"/>
+        <Button Grid.Row="3" x:Name="syncASC" x:Uid="ButtonGetServerOnly" MinWidth="200" MinHeight="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="syncASC_Click"/>
+        <Button Grid.Row="4" x:Name="syncD2S" x:Uid="ButtonDeviceToServer" MinWidth="200" MinHeight="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="syncD2S_Click"/>
+    </Grid>
+</Page>

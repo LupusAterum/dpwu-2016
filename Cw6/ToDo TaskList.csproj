@@ -125,6 +125,9 @@
       <DependentUpon>LoginBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SyncModePage.xaml.cs">
+      <DependentUpon>SyncModePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ToDoTask.cs" />
     <Compile Include="ViewModel.cs" />
   </ItemGroup>
@@ -178,6 +181,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="LoginBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SyncModePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

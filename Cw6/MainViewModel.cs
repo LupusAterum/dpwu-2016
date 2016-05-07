@@ -12,11 +12,17 @@ using System.Net.Http.Headers;
 
 namespace ToDoTaskList {
     public class MainViewModel : ViewModel {
+        //constants
         private const string REST_BASE_URL = "http://windowsphoneuam.azurewebsites.net/";
         private const string REST_PATH = "api/ToDoTasks/";
         private const int ONLY_IN_LOCAL = 1;
         private const int ONLY_IN_REMOTE = -1;
         private const int IN_BOTH = 0;
+        //sync modes constants
+        public const int DEVICE_TO_SERVER = 0;
+        public const int ADD_SERVER_CONTENT = 1;
+        public const int SERVER_TO_DEVICE = 2;
+        //end constants
         private StorageFolder localDataFolder { get; set; } = ApplicationData.Current.LocalFolder;
         private string ownerID { get; set; }
         public string OwnerID { get { return ownerID; } set { ownerID = value; } }
@@ -124,8 +130,38 @@ namespace ToDoTaskList {
             request.Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(task), Encoding.UTF8, "application/json"); ;
             await client.SendAsync(request);
         }
-        public async Task synchronizeWithRest() {
+        public async Task synchronizeWithRest(int syncMode) {
             await readRemoteData();
+            switch(syncMode) {
+                case DEVICE_TO_SERVER:
+                    await synchronizeDeviceToServer();
+                    break;
+                case ADD_SERVER_CONTENT:
+                    await synchronizeAddServerOnly();
+                    break;
+                case SERVER_TO_DEVICE:
+                    await synchronizeServerToDevice();
+                    break;
+            }
+
+        }
+
+        private int isTaskInLocalOrRemoteOrBoth(long taskId) {
+            ToDoTask local = LocalCollection.Where(X => X.Id == taskId).FirstOrDefault();
+            ToDoTask remote = remoteCollection.Where(X => X.Id == taskId).FirstOrDefault();
+            if (local != null && remote != null) {
+                return IN_BOTH;
+            }
+            else if (local == null) {
+                return ONLY_IN_REMOTE;
+            }
+            else if (remote == null) {
+                return ONLY_IN_LOCAL;
+            }
+            return -999; //this won't happen
+        }
+        private async Task synchronizeDeviceToServer() {
+            //this is only method that updates existing data in both
             //remove tasks that are not in local, update tasks in both
             foreach (ToDoTask current in remoteCollection) {
                 int taskIs = isTaskInLocalOrRemoteOrBoth(current.Id);
@@ -149,21 +185,22 @@ namespace ToDoTaskList {
             LocalCollection = remoteCollection;
             await saveLocalData();
         }
-
-        private int isTaskInLocalOrRemoteOrBoth(long taskId) {
-            ToDoTask local = LocalCollection.Where(X => X.Id == taskId).FirstOrDefault();
-            ToDoTask remote = remoteCollection.Where(X => X.Id == taskId).FirstOrDefault();
-            if (local != null && remote != null) {
-                return IN_BOTH;
+        private async Task synchronizeAddServerOnly() {
+            //this method does not update data on server
+            foreach (ToDoTask current in remoteCollection) {
+                int taskIs = isTaskInLocalOrRemoteOrBoth(current.Id);
+                if (taskIs == ONLY_IN_REMOTE) {
+                    await addTaskLocal(current);
+                }
             }
-            else if (local == null) {
-                return ONLY_IN_REMOTE;
-            }
-            else if (remote == null) {
-                return ONLY_IN_LOCAL;
-            }
-            return -999; //this won't happen
+            await saveLocalData();
+            
         }
-
+        private async Task synchronizeServerToDevice() {
+            //replaces device content with server content.
+           await readRemoteData();
+            LocalCollection = remoteCollection;
+            await saveLocalData();
+        }
     }
 }
