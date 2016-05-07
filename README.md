@@ -3,6 +3,9 @@ This is a project for subject 'Windows Universal Programming'.
 Language: C#. Platform: Windows Universal (Phone + PC)  
 Description:  
 Simple application for managing Task List.
+### Screenshots
+Desktop: https://onedrive.live.com/redir?resid=60F46F0715FDC122!3870&authkey=!AJPUy66l_WAXgsM&ithint=folder%2cpng   
+Phone: https://onedrive.live.com/redir?resid=60F46F0715FDC122!3869&authkey=!AHfEkYUPrkvGDj8&ithint=folder%2cpng  
 ## Project requirements
 ### Technical
 #### for mark 3:
