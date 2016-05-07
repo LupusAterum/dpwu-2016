@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Popups;
@@ -38,7 +39,7 @@ namespace ToDoTaskList {
             confirm.Commands.Add(new UICommand { Label = loader.GetString("NoBtn"), Id = 1 });
             var res = await confirm.ShowAsync();
             if ((int) res.Id == 0) {
-                getViewModel().deleteTaskLocal(getViewModel().CurrentObject);
+                await getViewModel().deleteTaskLocal(getViewModel().CurrentObject);
                 getViewModel().CurrentObject = null;
                 Frame.GoBack();
             } else {

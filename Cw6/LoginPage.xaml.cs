@@ -55,5 +55,21 @@ namespace ToDoTaskList {
         private void LoginButtton_Click(object sender, RoutedEventArgs e) {
 
         }
+
+        private async void ExitButton_Click(object sender, RoutedEventArgs e) {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+
+            MessageDialog confirmExitDialog = new MessageDialog(loader.GetString("ExitConfirmation"));
+            confirmExitDialog.Commands.Clear();
+            confirmExitDialog.Commands.Add(new UICommand { Label = loader.GetString("YesBtn"), Id = 0 });
+            confirmExitDialog.Commands.Add(new UICommand { Label = loader.GetString("NoBtn"), Id = 1 });
+            var res = await confirmExitDialog.ShowAsync();
+            if ((int)res.Id == 0) {
+                Application.Current.Exit();
+            }
+            else {
+                return;
+            }
+        }
     }
 }
