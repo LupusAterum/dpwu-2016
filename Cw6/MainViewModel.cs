@@ -47,18 +47,19 @@ namespace ToDoTaskList {
             remoteCollection = JsonConvert.DeserializeObject<ObservableCollection<ToDoTask>>(items);
         }
         public async Task readLocalData() {
-            StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat", 
+            StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat",
                 CreationCollisionOption.OpenIfExists);
             var items = await FileIO.ReadTextAsync(localDataFile);
             ObservableCollection<ToDoTask> collectionFromFile = JsonConvert.DeserializeObject<ObservableCollection<ToDoTask>>(items);
             if (collectionFromFile == null) {
                 LocalCollection = new ObservableCollection<ToDoTask>();
             }
-            LocalCollection = collectionFromFile;
+            else
+                LocalCollection = collectionFromFile;
         }
 
         public async Task saveLocalData() {
-            StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat", 
+            StorageFile localDataFile = await localDataFolder.CreateFileAsync(OwnerID + ".dat",
                 CreationCollisionOption.ReplaceExisting);
             var items = JsonConvert.SerializeObject(LocalCollection);
             await FileIO.WriteTextAsync(localDataFile, items);
@@ -113,29 +114,30 @@ namespace ToDoTaskList {
             await client.SendAsync(request);
         }
         private async Task addRemoteTask(ToDoTask task) {
-                task.Id = 0;
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(REST_BASE_URL);
-                client.DefaultRequestHeaders
-                      .Accept
-                      .Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, REST_PATH);
-                request.Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(task), Encoding.UTF8, "application/json"); ;
-                await client.SendAsync(request);
+            task.Id = 0;
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(REST_BASE_URL);
+            client.DefaultRequestHeaders
+                  .Accept
+                  .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, REST_PATH);
+            request.Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(task), Encoding.UTF8, "application/json"); ;
+            await client.SendAsync(request);
         }
         public async Task synchronizeWithRest() {
             await readRemoteData();
             //remove tasks that are not in local, update tasks in both
             foreach (ToDoTask current in remoteCollection) {
                 int taskIs = isTaskInLocalOrRemoteOrBoth(current.Id);
-                if(taskIs == ONLY_IN_REMOTE) {
+                if (taskIs == ONLY_IN_REMOTE) {
                     await deleteRemoteTask(current);
-                } else if (taskIs == IN_BOTH) {
+                }
+                else if (taskIs == IN_BOTH) {
                     await updateRemoteTask(current);
-                } 
+                }
             }
             //add tasks only in local
-            foreach(ToDoTask current in LocalCollection) {
+            foreach (ToDoTask current in LocalCollection) {
                 int taskIs = isTaskInLocalOrRemoteOrBoth(current.Id);
                 if (taskIs == ONLY_IN_LOCAL) {
                     await addRemoteTask(current);
@@ -151,15 +153,17 @@ namespace ToDoTaskList {
         private int isTaskInLocalOrRemoteOrBoth(long taskId) {
             ToDoTask local = LocalCollection.Where(X => X.Id == taskId).FirstOrDefault();
             ToDoTask remote = remoteCollection.Where(X => X.Id == taskId).FirstOrDefault();
-            if(local != null && remote != null) {
+            if (local != null && remote != null) {
                 return IN_BOTH;
-            } else if(local == null) {
+            }
+            else if (local == null) {
                 return ONLY_IN_REMOTE;
-            } else if(remote == null) {
+            }
+            else if (remote == null) {
                 return ONLY_IN_LOCAL;
             }
             return -999; //this won't happen
         }
-        
+
     }
 }

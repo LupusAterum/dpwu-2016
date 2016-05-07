@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -49,7 +50,13 @@ namespace ToDoTaskList
         }
 
         private async void AppBarButton_Click_1(object sender, RoutedEventArgs e) {
-            await getViewModel().synchronizeWithRest();
+            try {
+                await getViewModel().synchronizeWithRest();
+            } catch {
+                var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+                MessageDialog errorPopup = new MessageDialog(loader.GetString("SynchronizationErrorMessage"));
+                await errorPopup.ShowAsync();
+            }
         }
 
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e) {

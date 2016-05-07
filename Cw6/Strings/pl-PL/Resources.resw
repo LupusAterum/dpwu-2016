@@ -175,6 +175,9 @@
     <value>usuń</value>
     <comment>app bar button delete</comment>
   </data>
+  <data name="SynchronizationErrorMessage" xml:space="preserve">
+    <value>Nie udało się zsynchronizować danych. Czy masz połączenie z Internetem?</value>
+  </data>
   <data name="Synchronize.Label" xml:space="preserve">
     <value>synchronizuj</value>
     <comment>app bar button refresh</comment>
