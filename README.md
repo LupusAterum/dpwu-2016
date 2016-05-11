@@ -36,8 +36,6 @@ Phone: [Screenshots on OneDrive](https://onedrive.live.com/redir?resid=60F46F071
 * Application will be readable, neat and useful.  
 
 ### Licensing  
-(c) Karol Mazurek 2016
+Licensed under GNU GPL v3
 
-Licensed under CC-BY-NC-SA
-
-(Not for commercial use)
+Created by Karol Mazurek
