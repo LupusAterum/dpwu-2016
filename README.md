@@ -34,3 +34,10 @@ Phone: [Screenshots on OneDrive](https://onedrive.live.com/redir?resid=60F46F071
 
 ### UX
 * Application will be readable, neat and useful.  
+
+### Licensing  
+(c) Karol Mazurek 2016
+
+Licensed under CC-BY-NC-SA
+
+(Not for commercial use)
