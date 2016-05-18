@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel;
+/*
+// Author: Karol Mazurek <karmaz@st.amu.edu.pl>
+*/
 
 namespace ToDoTaskList {
     public class ViewModel : INotifyPropertyChanged {

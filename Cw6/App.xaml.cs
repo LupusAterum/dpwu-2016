@@ -16,6 +16,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+/*
+// Author: Karol Mazurek <karmaz@st.amu.edu.pl>
+*/
 
 namespace ToDoTaskList
 {

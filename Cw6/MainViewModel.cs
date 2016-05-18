@@ -9,6 +9,9 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+/*
+// Author: Karol Mazurek <karmaz@st.amu.edu.pl>
+*/
 
 namespace ToDoTaskList {
     public class MainViewModel : ViewModel {

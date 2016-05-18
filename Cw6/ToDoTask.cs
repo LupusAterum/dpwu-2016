@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*
+// Author: Karol Mazurek <karmaz@st.amu.edu.pl>
+*/
 
 namespace ToDoTaskList {
     public class ToDoTask {
