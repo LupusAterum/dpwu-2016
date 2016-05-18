@@ -208,6 +208,9 @@ replace server content with device content</value>
   <data name="SynchronizeModeTitle.Text" xml:space="preserve">
     <value>How do you want to synchronize?</value>
   </data>
+  <data name="SyncOk" xml:space="preserve">
+    <value>Synchronization completed successfully.</value>
+  </data>
   <data name="TaskListTitle.Text" xml:space="preserve">
     <value>Task List</value>
   </data>

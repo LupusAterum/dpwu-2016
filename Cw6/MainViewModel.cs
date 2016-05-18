@@ -182,7 +182,8 @@ namespace ToDoTaskList {
                     await deleteRemoteTask(current);
                 }
                 else if (taskIs == IN_BOTH) {
-                    await updateRemoteTask(current);
+                    ToDoTask toUpdate = localCollection.Where(X => X.Id == current.Id).FirstOrDefault();
+                    await updateRemoteTask(toUpdate);
                 }
             }
             //add tasks only in local

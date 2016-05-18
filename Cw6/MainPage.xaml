@@ -5,7 +5,7 @@
     xmlns:local="using:ToDoTaskList"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="Page_Loaded">
     <Page.BottomAppBar>
         <CommandBar Background="#FF173E43">
             <CommandBar.Content>
@@ -35,10 +35,12 @@
     <Grid Background="#FF173E43">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" x:Name="ListTitle" x:Uid="TaskListTitle" SelectionChanged="TextBlock_SelectionChanged" FontSize="18.667" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
-            <ListBox Grid.Row="1" x:Name="ListBox1" ItemsSource="{Binding LocalCollection}" ItemTemplate="{ StaticResource ItemsDataTemplate}" SelectionChanged="ListBox1_SelectionChanged" Background="#FF3FB0AC">
+        <ProgressBar x:Name="bar" Grid.Row="1"></ProgressBar>    
+        <ListBox Grid.Row="2" x:Name="ListBox1" ItemsSource="{Binding LocalCollection}" ItemTemplate="{ StaticResource ItemsDataTemplate}" SelectionChanged="ListBox1_SelectionChanged" Background="#FF3FB0AC">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>

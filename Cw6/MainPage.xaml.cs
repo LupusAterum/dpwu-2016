@@ -27,10 +27,12 @@ namespace ToDoTaskList
         public MainPage() {
             this.InitializeComponent();
             DataContext = MainViewModel.I();
-            readLocalStorage();
+            
         }
         private async void readLocalStorage() {
+            startProgress();
             await getViewModel().readLocalData();
+            stopProgress();
         }
         private MainViewModel getViewModel() {
             return DataContext as MainViewModel;
@@ -56,6 +58,18 @@ namespace ToDoTaskList
 
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e) {
 
+        }
+        private void startProgress() {
+            bar.IsIndeterminate = true;
+            
+        }
+        private void stopProgress() {
+            bar.IsIndeterminate = false;
+            
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e) {
+            readLocalStorage();
         }
     }
 }
